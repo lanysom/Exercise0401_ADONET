@@ -16,6 +16,6 @@ namespace ClientManager.DAL
         public string City { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string Changed { get; set; }
+        public byte[] Rowversion { get; set; }
     }
 }
