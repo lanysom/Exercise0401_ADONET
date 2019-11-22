@@ -3,3 +3,5 @@
 ################################################################################
 
 /ClientManager/.vs/ClientManager/v16
+/ClientManager/ClientManager.DAL/obj/Debug
+/.vs
