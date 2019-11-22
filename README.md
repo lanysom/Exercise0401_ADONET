@@ -12,4 +12,4 @@ There are five methods that you should implement:
 1. Update()
 1. Delete()
 
-**HINT!** The methods that you must implement are marked with a *TODO* comment
+**HINT!** The methods that you must implement are marked with a *TODO* comment in the code to make it easier for you to find using the task list in Visual Studio
