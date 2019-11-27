@@ -6,3 +6,6 @@
 /ClientManager/ClientManager.DAL/obj/Debug
 /.vs
 /ClientManager/ClientManager.DAL/bin/Debug
+/ClientManager/DatabaseUpdater/bin/Debug
+/ClientManager/DatabaseUpdater/obj/Debug
+/ClientManager/packages
