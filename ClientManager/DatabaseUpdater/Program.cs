@@ -10,7 +10,9 @@ namespace DatabaseUpdater
     {
         static void Main(string[] args)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings[0].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+
+            EnsureDatabase.For.SqlDatabase(connectionString);
 
             var upgrader =
                 DeployChanges.To
