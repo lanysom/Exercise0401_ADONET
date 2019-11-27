@@ -3,9 +3,12 @@
 ################################################################################
 
 /ClientManager/.vs/ClientManager/v16
-/ClientManager/ClientManager.DAL/obj/Debug
+/ClientManager/ClientManager.DAL/obj/
 /.vs
-/ClientManager/ClientManager.DAL/bin/Debug
-/ClientManager/DatabaseUpdater/bin/Debug
-/ClientManager/DatabaseUpdater/obj/Debug
+/ClientManager/ClientManager.DAL/bin/
+/ClientManager/DatabaseUpdater/bin/
+/ClientManager/DatabaseUpdater/obj/
 /ClientManager/packages
+
+
+.config
