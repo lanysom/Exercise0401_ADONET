@@ -15,5 +15,11 @@ There are five methods that you should implement:
    This method must update a row in the Customer table with data from a Customer object provided as a parameter. The method must return the updated object.
 1. **Delete(Customer customer)**   
    This method must delete a row in the Customer table based on data from a Customer object provided as a parameter. The method must return a value indicating if the operation went well or not.
+   
+## Getting Started
+
+To generate the database and data necessary for this exercise, simply run the DatabaseUpdater project.
+
+After you have cloned the git repository and generated the database you can start implementing the methods as described above.
 
 **HINT!** The methods that you must implement are marked with a *TODO* comment in the code to make it easier for you to find using the task list in Visual Studio
