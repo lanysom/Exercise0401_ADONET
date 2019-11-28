@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,11 @@ namespace ClientManager.DAL
         public IEnumerable<Customer> GetAll()
         {
             // TODO: 1. Implement the method so it return a list of all the customers in the database
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+            }
+
 
             throw new NotImplementedException();
         }
