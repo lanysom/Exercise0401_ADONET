@@ -6,60 +6,112 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
+using System.Data.SqlClient;
 
 namespace ClientManager.DAL.Tests
 {
     [TestClass()]
     public class CustomerRepositoryTests
     {
-        private string _connectionString;
+        private CustomerRepository _repos;
+        private string _connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Exercise04_ADONET;Integrated Security=True";
 
         [TestInitialize]
         public void Initialize()
         {
-            _connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Exercise04_ADONET;Integrated Security=True";
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "SET IDENTITY_INSERT Customers ON; " +
+                    "INSERT INTO Customers (Id, Firstname, Lastname, Address, Zip, City, Phone, Email) VALUES(1, 'Jens', 'Hansen', 'Hovedgaden 39', '9500', 'Hobro', '98765432', 'jh@iligemaasen.dk'); "+ 
+                    "INSERT INTO Customers (Id, Firstname, Lastname, Address, Zip, City, Phone, Email) VALUES(2, 'John', 'Schmidt', 'Solitudevej 98', '9000', 'Aalborg', '87654321', 'akasut@paatorveti.dk'); "+
+                    "INSERT INTO Customers (Id, Firstname, Lastname, Address, Zip, City, Phone, Email) VALUES(3, 'Sven', 'Svinsen', 'Ligustervænget 12', '9990', 'Skagen', '76543210', 'oink@triplex.dk'); ";
+                cmd.ExecuteNonQuery();
+            }
+
+            _repos = new CustomerRepository(_connectionString);                           
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetAllTest()
-        {
-            var repos = new CustomerRepository(_connectionString);
+        { 
+            var result = _repos.GetAll();
 
-
-
-            var result = repos.GetAll();
+            Assert.AreEqual(3, result.Count());
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetTest()
         {
-            var repos = new CustomerRepository(_connectionString);
+            var result = _repos.Get(1);
 
-            var result = repos.Get(1);
+            Assert.IsTrue(result.Id == 1);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void UpdateTest()
         {
-            var repos = new CustomerRepository(_connectionString);
+            var customer = _repos.Get(1);
+            customer.Address = "Paradisæblevej 111";
+            customer.Zip = "9210";
+            customer.City = "Aalborg SØ";
 
-            var result = repos.Update(null);
+            var result = _repos.Update(customer);
+
+            Assert.IsTrue(result.Id == 1);
+            Assert.IsTrue(result.Address == "Paradisæblevej 111");
+
+            var updatedCustomer = _repos.Get(1);
+
+            Assert.IsTrue(updatedCustomer.Id == 1);
+            Assert.IsTrue(updatedCustomer.Address == "Paradisæblevej 111");
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void InsertTest()
         {
-            var repos = new CustomerRepository(_connectionString);
+            var customer = new Customer
+            {
+                Firstname = "Anders",
+                Lastname = "And",
+                Address = "Paradisæblevej 111",
+                Zip = "9999",
+                City = "Andeby",
+                Phone = "65432109",
+                Email = "anders_and@andeby.dk"
+            };
 
-            var result = repos.Insert(null);
+            var result = _repos.Insert(customer);
+
+            Assert.IsTrue(result.Id == 4);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void DeleteTest()
         {
-            var repos = new CustomerRepository(_connectionString);
+            var customer = _repos.Get(1);
 
-            var result = repos.Delete(null);
+            var result = _repos.Delete(customer);
+
+            Assert.IsTrue(result);
+
+            var deletedCustomer = _repos.Get(1);
+
+            Assert.IsNull(deletedCustomer);
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "DELETE FROM Customers";
+                cmd.ExecuteNonQuery();
+            }
+
         }
     }
 }
