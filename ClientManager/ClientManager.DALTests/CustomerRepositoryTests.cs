@@ -24,9 +24,7 @@ namespace ClientManager.DAL.Tests
         public void GetAllTest()
         {
             var repos = new CustomerRepository(_connectionString);
-
-
-
+                       
             var result = repos.GetAll();
         }
 
