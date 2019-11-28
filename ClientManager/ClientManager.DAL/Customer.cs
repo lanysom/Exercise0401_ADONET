@@ -8,7 +8,7 @@ namespace ClientManager.DAL
 {
     public class Customer
     {
-        public int CustomerId { get; internal set; }
+        public int Id { get; internal set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Address { get; set; }
@@ -16,6 +16,5 @@ namespace ClientManager.DAL
         public string City { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public byte[] Rowversion { get; set; }
     }
 }

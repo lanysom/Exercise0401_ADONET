@@ -8,6 +8,13 @@ namespace ClientManager.DAL
 {
     public class CustomerRepository
     {
+        private readonly string _connectionString;
+
+        public CustomerRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public IEnumerable<Customer> GetAll()
         {
             // TODO: 1. Implement the method so it return a list of all the customers in the database
