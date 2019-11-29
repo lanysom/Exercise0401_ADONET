@@ -15,16 +15,19 @@ namespace ClientManager.DAL.Tests
     public class CustomerRepositoryTests
     {
         private CustomerRepository _repos;
-        private string _connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Exercise04_ADONET;Integrated Security=True";
+        private string _connectionString;
 
         [TestInitialize]
         public void Initialize()
         {
+            _connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+
             using (var conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "SET IDENTITY_INSERT Customers ON; " +
+                cmd.CommandText = 
+                    "SET IDENTITY_INSERT Customers ON; " +
                     "INSERT INTO Customers (Id, Firstname, Lastname, Address, Zip, City, Phone, Email) VALUES(1, 'Jens', 'Hansen', 'Hovedgaden 39', '9500', 'Hobro', '98765432', 'jh@iligemaasen.dk'); "+ 
                     "INSERT INTO Customers (Id, Firstname, Lastname, Address, Zip, City, Phone, Email) VALUES(2, 'John', 'Schmidt', 'Solitudevej 98', '9000', 'Aalborg', '87654321', 'akasut@paatorveti.dk'); "+
                     "INSERT INTO Customers (Id, Firstname, Lastname, Address, Zip, City, Phone, Email) VALUES(3, 'Sven', 'Svinsen', 'Ligustervænget 12', '9990', 'Skagen', '76543210', 'oink@triplex.dk'); ";
@@ -48,6 +51,8 @@ namespace ClientManager.DAL.Tests
             var result = _repos.Get(1);
 
             Assert.IsTrue(result.Id == 1);
+            Assert.IsTrue(result.Firstname == "Jens");
+            Assert.IsTrue(result.Zip == "9500");
         }
 
         [TestMethod]
