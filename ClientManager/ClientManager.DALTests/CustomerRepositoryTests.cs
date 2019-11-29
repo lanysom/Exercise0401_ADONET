@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using System.Configuration;
+using System.Data.SqlClient;
 
 namespace ClientManager.DAL.Tests
 {
