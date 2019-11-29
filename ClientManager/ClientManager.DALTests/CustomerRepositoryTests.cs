@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
+using System.Configuration;
 
 namespace ClientManager.DAL.Tests
 {
@@ -17,7 +18,7 @@ namespace ClientManager.DAL.Tests
         [TestInitialize]
         public void Initialize()
         {
-            _connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Exercise04_ADONET;Integrated Security=True";
+            _connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
         }
 
         [TestMethod()]
