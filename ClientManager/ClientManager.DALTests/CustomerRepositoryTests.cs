@@ -114,7 +114,7 @@ namespace ClientManager.DAL.Tests
             {
                 conn.Open();
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = "DELETE FROM Customers ";
+                cmd.CommandText = "DELETE FROM Customers; DBCC CHECKIDENT ('Customers', RESEED, 1);";
                 cmd.ExecuteNonQuery();
             }
 
