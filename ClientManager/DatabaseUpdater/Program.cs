@@ -11,8 +11,10 @@ namespace DatabaseUpdater
         {
             var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
 
+            // Creates the database if it doesn't exist 
             EnsureDatabase.For.SqlDatabase(connectionString);
 
+            // Initializes the updater
             var upgrader =
                 DeployChanges.To
                     .SqlDatabase(connectionString)
@@ -20,6 +22,7 @@ namespace DatabaseUpdater
                     .LogToConsole()
                     .Build();
 
+            // Execute update
             var result = upgrader.PerformUpgrade();
 
             if (!result.Successful)

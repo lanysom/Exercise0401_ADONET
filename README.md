@@ -16,6 +16,8 @@ There are five methods that you should implement:
 1. **Delete(Customer customer)**   
    This method must delete a row in the Customer table based on data from a Customer object provided as a parameter. The method must return a value indicating if the operation went well or not.
    
+You can test your solution by running the tests implemented in the ClientManager.DALTests project.
+   
 ## Getting Started
 
 To generate the database and data necessary for this exercise, simply run the DatabaseUpdater project. It is a small console application that utilizes the [DbUp](https://dbup.github.io/) package to create a database and run SQL scripts, all you need to do is to change the connectionstring in the ConnectionStrings.config file so that it points to a database you have access to. If the database doesn't exist, it will be created, so it is not necessary that the database exists beforehand.
