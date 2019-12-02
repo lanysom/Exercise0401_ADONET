@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace ClientManager.DAL
 {
-    public class CustomerRepository
+    public class CustomerDAO
     {
         private readonly string _connectionString;
 
-        public CustomerRepository(string connectionString)
+        public CustomerDAO(string connectionString)
         {
             _connectionString = connectionString;
         }

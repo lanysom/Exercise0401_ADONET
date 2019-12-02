@@ -8,7 +8,7 @@ namespace ClientManager.DAL.Tests
     [TestClass()]
     public class CustomerRepositoryTests
     {
-        private CustomerRepository _repos;
+        private CustomerDAO _repos;
         private string _connectionString;
 
         [TestInitialize]
@@ -28,7 +28,7 @@ namespace ClientManager.DAL.Tests
                 cmd.ExecuteNonQuery();
             }
 
-            _repos = new CustomerRepository(_connectionString);                           
+            _repos = new CustomerDAO(_connectionString);                           
         }
 
         [TestMethod]
