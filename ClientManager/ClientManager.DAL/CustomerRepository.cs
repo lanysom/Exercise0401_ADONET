@@ -141,8 +141,16 @@ namespace ClientManager.DAL
         public bool Delete(Customer customer)
         {
             // TODO: 5. Delete the customer defined in the provided customer object from the database and return a value indicating the success/failure of the operation
+            using (var conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
 
-            throw new NotImplementedException();
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = "DELETE FROM Customers WHERE Id = @id";
+                cmd.Parameters.AddWithValue("id", customer.Id);
+
+                return cmd.ExecuteNonQuery() == 1;
+            }
         }
     }
 }
