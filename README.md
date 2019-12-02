@@ -23,3 +23,7 @@ To generate the database and data necessary for this exercise, simply run the Da
 After you have cloned the git repository and generated the database you can start implementing the methods as described above.
 
 **HINT!** The methods that you must implement are marked with a *TODO* comment in the code to make it easier for you to find using the task list in Visual Studio
+
+## Solution
+
+You can find a sample solution for the exercise in the sample_solution branch.
