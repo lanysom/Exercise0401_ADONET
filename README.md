@@ -18,7 +18,7 @@ There are five methods that you should implement:
    
 ## Getting Started
 
-To generate the database and data necessary for this exercise, simply run the DatabaseUpdater project. It is a small console application that utilizes the DbUp package to create a database and run SQL scripts, all you need to do is to change the connectionstring in the ConnectionStrings.config file so that it points to a database you have access to. If the database doesn't exist, it will be created, so it is not necessary that the database exists beforehand.
+To generate the database and data necessary for this exercise, simply run the DatabaseUpdater project. It is a small console application that utilizes the [DbUp](https://dbup.github.io/) package to create a database and run SQL scripts, all you need to do is to change the connectionstring in the ConnectionStrings.config file so that it points to a database you have access to. If the database doesn't exist, it will be created, so it is not necessary that the database exists beforehand.
 
 After you have cloned the git repository and generated the database you can start implementing the methods as described above.
 
