@@ -1,7 +1,6 @@
 ﻿using DbUp;
 using System;
 using System.Configuration;
-using System.Linq;
 using System.Reflection;
 
 namespace DatabaseUpdater
